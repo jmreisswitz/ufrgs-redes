@@ -3,6 +3,8 @@ import socket
 import threading
 import time
 
+from connection_logger import ConnectionLogger
+
 
 class Host(ABC):
 	def __init__(self, port):
@@ -25,5 +27,8 @@ class Host(ABC):
 
 	def log_connection(self):
 		while True:
-			print('oi')
+			with self._lock:
+				counted_data = self.data_counter
+				self.data_counter = 0
+			ConnectionLogger.log_data(__name__, counted_data)
 			time.sleep(1)
