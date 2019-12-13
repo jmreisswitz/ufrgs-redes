@@ -18,7 +18,13 @@ def simple():
 
 
 def auto_update():
-	pass
+	while True:
+		df = pd.read_csv(parsed_args.csv, sep=',')
+		df.plot()
+		plt.draw()
+		plt.pause(1)
+		plt.close('all')
+
 
 
 def main():

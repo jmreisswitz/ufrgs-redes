@@ -2,7 +2,7 @@ import logging
 
 from host import Host
 
-logging.basicConfig(format='[%(name)s][%(levelname)s]: %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='[%(name)s][%(levelname)s]: %(message)s', level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 
