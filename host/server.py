@@ -7,6 +7,10 @@ logger = logging.getLogger(__name__)
 
 
 class Server(Host):
+	def __init__(self, port):
+		super().__init__(port)
+		self.name = __name__.split('.')[1]
+
 	def run_logic(self):
 		self._socket.bind(('127.0.0.1', self.port))
 		logger.info('binded')

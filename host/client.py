@@ -6,6 +6,7 @@ class Client(Host):
 		super().__init__(port)
 		self.server_address = server_address
 		self.data_to_send = b'a'*1024
+		self.name = __name__.split('.')[1]
 
 	def run_logic(self):
 		self._socket.connect((self.server_address, self.port))

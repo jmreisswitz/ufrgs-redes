@@ -10,6 +10,7 @@ class Host(ABC):
 	def __init__(self, port):
 		self.port = int(port)
 		self.data_counter = 0
+		self.name = __name__
 		self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self._lock = threading.Lock()
 
@@ -26,9 +27,10 @@ class Host(ABC):
 		pass
 
 	def log_connection(self):
+		print('starting collector')
 		while True:
 			with self._lock:
 				counted_data = self.data_counter
 				self.data_counter = 0
-			ConnectionLogger.log_data(__name__, counted_data)
+			ConnectionLogger.log_data(self.name, counted_data)
 			time.sleep(1)
