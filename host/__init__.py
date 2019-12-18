@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import socket
 import threading
 import time
+from datetime import datetime
 
 from connection_logger import ConnectionLogger
 
@@ -13,6 +14,7 @@ class Host(ABC):
 		self.name = __name__
 		self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self._lock = threading.Lock()
+		self.timestamp = datetime.now()
 
 	def run(self):
 		log_collector_thread = threading.Thread(target=self.log_connection, daemon=True)
@@ -32,5 +34,5 @@ class Host(ABC):
 			with self._lock:
 				counted_data = self.data_counter
 				self.data_counter = 0
-			ConnectionLogger.log_data(self.name, counted_data)
-			time.sleep(1)
+			ConnectionLogger.log_data(self.name, counted_data, self.timestamp)
+			time.sleep(0.2)

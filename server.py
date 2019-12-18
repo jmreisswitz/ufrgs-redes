@@ -4,6 +4,7 @@ from host.server import Server
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', help='server\'s port')
+parser.add_argument('--prefix', help='file prefix')
 parsed_args = parser.parse_args()
 
 

@@ -12,7 +12,7 @@ class Server(Host):
 		self.name = __name__.split('.')[1]
 
 	def run_logic(self):
-		self._socket.bind(('127.0.0.1', self.port))
+		self._socket.bind(('', self.port))
 		logger.info('binded')
 		self._socket.listen()
 		logger.info('listening')
